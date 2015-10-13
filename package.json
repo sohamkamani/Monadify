@@ -6,6 +6,13 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "devDependencies": {
+   "coveralls": "^2.11.2",
+   "matcha": "^0.6.0",
+   "mocha": "*",
+   "nyc": "^3.0.0",
+   "semver": "^4.3.3"
+ },
   "author": "",
   "license": "ISC"
 }
