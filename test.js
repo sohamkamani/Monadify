@@ -17,6 +17,7 @@ mon10
   .bind(addOne)
   .bind(addOne)
   .bind(addOne)
-  .bind(addOne);
+  .bind(addOne)
+  .send(console.log);
 
 console.log(mon10.apply());
