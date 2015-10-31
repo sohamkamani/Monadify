@@ -1,4 +1,6 @@
-var assert = require('assert');
+var assert = require('assert'),
+expect = require('chai').expect;
+
 var Monadify = require('./'),
   addOne = function(n) {
     return n + 1;
@@ -86,5 +88,22 @@ describe('Send', function() {
     var monObj = Monadify({});
     monObj.send(mutateObj);
     assert.equal(monObj.apply().a, undefined);
+  });
+});
+
+describe('Error handling', function(){
+  it('throws standard error if error handler is not given', function(){
+    var monObj = Monadify({}),
+    errorRiddenFunction = function(){
+      monObj.send(errOne);
+    };
+    expect(errorRiddenFunction).to.throw(Error);
+  });
+  it('does not throw standard error if error handler is given', function(){
+    var monObj = Monadify({}, function(){}),
+    errorRiddenFunction = function(){
+      monObj.send(errOne);
+    };
+    expect(errorRiddenFunction).to.not.throw(Error);
   });
 });
