@@ -2,9 +2,10 @@ var Monadify = require('./index');
 var addOne = function(n) {
   return n + 1;
 };
+var errOne= '';
 
-var mon1 = Monadify(1);
-var mon10 = Monadify(10);
+var mon1 = Monadify(1, console.log);
+var mon10 = Monadify(10, console.log);
 
 mon1
   .bind(addOne)

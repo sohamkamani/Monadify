@@ -6,14 +6,17 @@ var bind = require('./lib/bind'),
   apply = require('./lib/apply'),
   send = require('./lib/send');
 
-var Monadify = function(input) {
+var Monadify = function(input, errorHandler) {
   var self = this;
 
-  if(!(self instanceof Monadify)){
-    return new Monadify(input);
+  if (!(self instanceof Monadify)) {
+    return new Monadify(input, errorHandler);
   }
 
   self.input = clone(input);
+  self.errorHandler = errorHandler || function(e){
+    throw new Error(e);
+  };
 };
 
 Monadify.prototype.bind = bind;
