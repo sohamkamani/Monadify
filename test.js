@@ -91,6 +91,7 @@ describe('Send', function() {
   });
 });
 
+
 describe('Error handling', function(){
   it('throws standard error if error handler is not given', function(){
     var monObj = Monadify({}),
