@@ -44,7 +44,7 @@ console.log(result);
 - [send](#send)
 - [apply](#apply)
 
-<span id="constructor"></span>
+<a name="constructor"/>
 ### Monadify(input, [errorHandler])
 Returns a mutation (monad) of the ```input``` argument. Optional ```errorHandler``` function, which gets called if an error is thrown somewhere down the function chain.
 #### Arguments
