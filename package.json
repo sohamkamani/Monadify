@@ -1,11 +1,29 @@
 {
   "name": "monadify",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Make your javascript code cleaner and more expressive with the power of monads and functional programming.",
   "main": "index.js",
   "scripts": {
     "test": "mocha test.js"
   },
+  "repository": "sohamkamani/Monadify",
+  "maintainers": [
+    "Soham Kamani <sohamkamani@gmail.com> (sohamkamani.com)"
+  ],
+  "engines": {
+    "node": ">=0.12.4"
+  },
+  "keywords" : [
+    "monads",
+    "monad",
+    "function",
+    "functional",
+    "bind",
+    "chain",
+    "apply",
+    "send",
+    "chaining"
+  ],
   "devDependencies": {
     "assert": "^1.3.0",
     "chai": "^3.4.0",
