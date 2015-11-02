@@ -1,6 +1,6 @@
 {
   "name": "monadify",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "Make your javascript code cleaner and more expressive with the power of monads and functional programming.",
   "main": "index.js",
   "scripts": {
