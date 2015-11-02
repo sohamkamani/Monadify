@@ -7,12 +7,17 @@ Make your javascript code cleaner and more expressive with the power of monads a
 - *Fail the way you want*, by passing custom error handling functions so that you don't have to abuse ```try``` and ```catch``` statements.
 - *Does not mutate objects*, creates a new cloned object on each instantiation, to prevent bug spewing mutations on the original object.
 
+## Install
+
+```sh
+$ npm install --save monadify
+```
+
 ## Usage
 
 ```javascript
-var Monadify = require('monadify');
-
-var n = 1;
+var Monadify = require('monadify'),
+  n = 1;
 
 function add(n){
   return n + 1;
@@ -142,3 +147,7 @@ var n = nMonad.apply();
 console.log(n);
 //=> 6
 ```
+
+## License
+
+MIT © [Soham Kamani](http://sohamkamani.com)

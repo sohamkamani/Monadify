@@ -1,7 +1,7 @@
 {
   "name": "monadify",
   "version": "0.3.0",
-  "description": "",
+  "description": "Make your javascript code cleaner and more expressive with the power of monads and functional programming.",
   "main": "index.js",
   "scripts": {
     "test": "mocha test.js"
@@ -15,8 +15,8 @@
     "nyc": "^3.0.0",
     "semver": "^4.3.3"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Soham Kamani",
+  "license": "MIT",
   "dependencies": {
     "clone": "^1.0.2"
   }
