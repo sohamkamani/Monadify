@@ -1,8 +1,6 @@
 var clone = require('clone');
 
 var bind = require('./lib/bind'),
-  get = require('./lib/get'),
-  use = require('./lib/use'),
   apply = require('./lib/apply'),
   send = require('./lib/send');
 
