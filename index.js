@@ -2,7 +2,8 @@ var clone = require('clone');
 
 var bind = require('./lib/bind'),
   apply = require('./lib/apply'),
-  send = require('./lib/send');
+  send = require('./lib/send'),
+  use = require('./lib/use');
 
 var Monadify = function(input, errorHandler) {
   var self = this;
@@ -20,5 +21,6 @@ var Monadify = function(input, errorHandler) {
 Monadify.prototype.bind = bind;
 Monadify.prototype.send = send;
 Monadify.prototype.apply = apply;
+Monadify.use = use(Monadify);
 
 module.exports = Monadify;
