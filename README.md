@@ -165,7 +165,7 @@ console.log(n);
 ### Lodash/underscore support*
 Monadify supports the use of external utility libraries like lodash. It extends their functionality to provide for a great and expressive new way to write code. Lodash functions of the form `_.someFunction(operand, argument)` can be used with Monadify as `someMonad.someFunction(argument).apply()` (see example).
 
-\* This feature is still in alpha. Contributions are welcome :)
+\* This feature is still in development. Contributions are welcome :)
 
 #### Examples
 
