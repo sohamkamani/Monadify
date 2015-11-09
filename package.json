@@ -1,6 +1,6 @@
 {
   "name": "monadify",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "Make your javascript code cleaner and more expressive with the power of monads and functional programming.",
   "main": "index.js",
   "scripts": {
@@ -22,7 +22,9 @@
     "chain",
     "apply",
     "send",
-    "chaining"
+    "chaining",
+    "lodash",
+    "underscore"
   ],
   "devDependencies": {
     "assert": "^1.3.0",
