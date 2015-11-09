@@ -5,7 +5,7 @@ Make your javascript code cleaner and more expressive with the power of monads a
 - Makes your code more expressive by using a form of function chaining, instead of wrapping the input inside multiple function calls.
 - _Fail the way you want_, by passing custom error handling functions so that you don't have to abuse `try` and `catch` statements.
 - _Does not mutate objects_, creates a new cloned object on each instantiation, to prevent bug spewing mutations on the original object.
-- _Now with support for lodash/underscore (alpha)_ - Simply [use](#use) the popular utility library you want, and gain all the functionality it provides.
+- _Now with support for lodash/underscore_ - Simply [use](#use) the popular utility library you want, and gain all the functionality it provides.
 
 ## Install
 
