@@ -1,4 +1,5 @@
 var assert = require('assert'),
+_ = require('lodash'),
 expect = require('chai').expect;
 
 var Monadify = require('./'),
@@ -10,7 +11,6 @@ var Monadify = require('./'),
     return obj;
   },
   errOne = '';
-
 
 describe('initialization', function() {
   it('should be an instance of monadify', function() {
@@ -106,5 +106,22 @@ describe('Error handling', function(){
       monObj.send(errOne);
     };
     expect(errorRiddenFunction).to.not.throw(Error);
+  });
+});
+
+describe('Lodash support', function(){
+  Monadify.use(_);
+
+  it('can use two argument lodash functions', function(){
+    var monArr = Monadify([1,2,3]),
+    monObj = Monadify({'one' : 1});
+    assert.deepEqual(monArr.map(addOne).apply(), [2,3,4]);
+    assert.deepEqual(monObj.assign({two: 'two'}).apply(), {one : 1, two : 'two'});
+  });
+  it('can use single argument lodash functions', function(){
+    var monArr = Monadify([3,1,2]),
+    monObj = Monadify({'one' : 1});
+    assert.deepEqual(monArr.sortBy().apply(), [1,2,3]);
+    assert.deepEqual(monObj.assign({two: 'two'}).apply(), {one : 1, two : 'two'});
   });
 });

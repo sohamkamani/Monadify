@@ -1,11 +1,11 @@
 # Monadify
-
 Make your javascript code cleaner and more expressive with the power of monads and functional programming.
 
 ## Features
 - Makes your code more expressive by using a form of function chaining, instead of wrapping the input inside multiple function calls.
-- *Fail the way you want*, by passing custom error handling functions so that you don't have to abuse ```try``` and ```catch``` statements.
-- *Does not mutate objects*, creates a new cloned object on each instantiation, to prevent bug spewing mutations on the original object.
+- _Fail the way you want_, by passing custom error handling functions so that you don't have to abuse `try` and `catch` statements.
+- _Does not mutate objects_, creates a new cloned object on each instantiation, to prevent bug spewing mutations on the original object.
+- _Now with support for lodash/underscore (alpha)_ - Simply [use](#use) the popular utility library you want, and gain all the functionality it provides.
 
 ## Install
 
@@ -39,8 +39,6 @@ var nMonad = Monadify(n)
 var result = nMonad.apply();
 console.log(result);
 //=> 4
-
-
 ```
 
 ## Documentation
@@ -48,15 +46,19 @@ console.log(result);
 - [bind](#bind)
 - [send](#send)
 - [apply](#apply)
+- [Lodash/underscore support](#use)
 
 <a name="constructor"/>
+
 ### Monadify(input, [errorHandler])
-Returns a mutation (monad) of the ```input``` argument. Optional ```errorHandler``` function, which gets called if an error is thrown somewhere down the function chain.
+Returns a mutation (monad) of the `input` argument. Optional `errorHandler` function, which gets called if an error is thrown somewhere down the function chain.
+
 #### Arguments
-- ```input``` - The input for the monad. Objects given as input are cloned, to prevent mutation.
-- ```errorHandler(error)``` - Callback function to handle error thrown anywhere in the function chain.
+- `input` - The input for the monad. Objects given as input are cloned, to prevent mutation.
+- `errorHandler(error)` - Callback function to handle error thrown anywhere in the function chain.
 
 #### Examples
+
 ```javascript
 var nMonad = Monadify(1);
 
@@ -67,10 +69,11 @@ var obj = {},
 obj.a = 'a';
 objMonad.send(console.log);
 //=> {}
-
 ```
+
 #### Error handling
-Defaults to ```throw new Error(e);```. Calls the ```errorHandler``` function, if present.
+Defaults to `throw new Error(e);`. Calls the `errorHandler` function, if present.
+
 ```js
 var nMonad = Monadify(1, console.log);
 // Logs any errors to the console, instead of throwing an error.
@@ -86,15 +89,18 @@ nMonad.bind(identity)
   .bind(identity);
 
 //=> [TypeError: object is not a function]
-
 ```
+
 <a name="bind"/>
+
 ### bind(bindingFunction)
-binds the given function to the current state of the input. Mutates the input into the returned value of ```bindingFunction```.
+binds the given function to the current state of the input. Mutates the input into the returned value of `bindingFunction`.
+
 #### Arguments
-- ```bindingFunction(input)``` - Function to be bound to the current state of the input.
+- `bindingFunction(input)` - Function to be bound to the current state of the input.
 
 #### Examples
+
 ```js
 var nMonad = Monadify(2);
 
@@ -110,13 +116,17 @@ nMonad.bind(console.log);
 nMonad.send(console.log);
 //=> undefined
 ```
+
 <a name="send"/>
+
 ### send(sentToFunction)
-sends the current state of input to the given function. Does not affect or mutate the input, and retains input state before sending to ```sentToFunction```.
+sends the current state of input to the given function. Does not affect or mutate the input, and retains input state before sending to `sentToFunction`.
+
 #### Arguments
-- ```sentToFunction(input)``` - Function to which the current state of input is passed as an argument. Return value is disregarded.
+- `sentToFunction(input)` - Function to which the current state of input is passed as an argument. Return value is disregarded.
 
 #### Examples
+
 ```js
 var nMonad = Monadify(2);
 
@@ -134,10 +144,12 @@ nMonad.send(console.log);
 ```
 
 <a name="apply"/>
+
 ### apply()
 Returns the current state of input.
 
 #### Examples
+
 ```js
 var nMonad = Monadify(2);
 nMonad.bind( n => n*3);
@@ -148,6 +160,33 @@ console.log(n);
 //=> 6
 ```
 
-## License
+<a name="use" />
 
+### Lodash/underscore support*
+Monadify supports the use of external utility libraries like lodash. It extends their functionality to provide for a great and expressive new way to write code. Lodash functions of the form `_.someFunction(operand, argument)` can be used with Monadify as `someMonad.someFunction(argument).apply()` (see example).
+
+\* This feature is still in alpha. Contributions are welcome :)
+
+#### Examples
+
+```js
+var Monadify = require('monadify'),
+  _ = require('lodash');
+
+Monadify.use(_);
+
+var nMonad = Monadify([1,2,3]);
+
+nMonad.map(addOne)  //Native lodash function => [2,3,4]
+  .max()  //Native lodash function => 4
+  .bind(addOne) // Monadify bind function => 5
+  .apply(); // => 5
+
+
+function addOne(n){
+  return n + 1;
+};
+```
+
+## License
 MIT © [Soham Kamani](http://sohamkamani.com)

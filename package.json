@@ -1,6 +1,6 @@
 {
   "name": "monadify",
-  "version": "0.3.3",
+  "version": "0.4",
   "description": "Make your javascript code cleaner and more expressive with the power of monads and functional programming.",
   "main": "index.js",
   "scripts": {
@@ -13,7 +13,7 @@
   "engines": {
     "node": ">=0.12.4"
   },
-  "keywords" : [
+  "keywords": [
     "monads",
     "monad",
     "function",
@@ -28,6 +28,7 @@
     "assert": "^1.3.0",
     "chai": "^3.4.0",
     "coveralls": "^2.11.2",
+    "lodash": "^3.10.1",
     "matcha": "^0.6.0",
     "mocha": "*",
     "nyc": "^3.0.0",
