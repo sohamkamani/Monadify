@@ -25,17 +25,17 @@ describe('initialization', function() {
   });
 });
 
-describe('Apply', function() {
+describe('value', function() {
   it('returns the current value present in the monad', function() {
     var mon1 = Monadify(1);
-    assert.equal(mon1.apply(), 1);
+    assert.equal(mon1.value(), 1);
   });
 
   it('returns a new cloned object and not a reference', function() {
     var obj = {},
       mon = Monadify(obj);
-    assert.notEqual(mon.apply(), obj);
-    assert.deepEqual(mon.apply(), obj);
+    assert.notEqual(mon.value(), obj);
+    assert.deepEqual(mon.value(), obj);
   });
 });
 
@@ -45,20 +45,20 @@ describe('Bind', function() {
     assert.equal(mon1.bind(addOne) instanceof Monadify, true);
   });
 
-  it('can bind multiple functions one after the other and return the result through apply', function() {
+  it('can bind multiple functions one after the other and return the result through value', function() {
     var mon10 = Monadify(10, console.log);
     mon10
       .bind(addOne)
       .bind(addOne)
       .bind(addOne)
       .bind(addOne);
-    assert.equal(mon10.apply(), 14);
+    assert.equal(mon10.value(), 14);
   });
 
   it('mutates an object if sent to it', function() {
     var monObj = Monadify({});
     monObj.bind(mutateObj);
-    assert.equal(monObj.apply().a, 'a');
+    assert.equal(monObj.value().a, 'a');
   });
 });
 
@@ -71,23 +71,23 @@ describe('Send', function() {
       .bind(addOne)
       .bind(addOne)
       .send(addOne);
-    assert.equal(mon10.apply(), 14);
+    assert.equal(mon10.value(), 14);
   });
 
-  it('can send to multiple functions one after the other and return the result through apply', function() {
+  it('can send to multiple functions one after the other and return the result through value', function() {
     var mon10 = Monadify(10, console.log);
     mon10
       .send(addOne)
       .send(addOne)
       .send(addOne)
       .send(addOne);
-    assert.equal(mon10.apply(), 10);
+    assert.equal(mon10.value(), 10);
   });
 
   it('does not mutate an object if sent to it', function() {
     var monObj = Monadify({});
     monObj.send(mutateObj);
-    assert.equal(monObj.apply().a, undefined);
+    assert.equal(monObj.value().a, undefined);
   });
 });
 
@@ -115,13 +115,13 @@ describe('Lodash support', function(){
   it('can use two argument lodash functions', function(){
     var monArr = Monadify([1,2,3]),
     monObj = Monadify({'one' : 1});
-    assert.deepEqual(monArr.map(addOne).apply(), [2,3,4]);
-    assert.deepEqual(monObj.assign({two: 'two'}).apply(), {one : 1, two : 'two'});
+    assert.deepEqual(monArr.map(addOne).value(), [2,3,4]);
+    assert.deepEqual(monObj.assign({two: 'two'}).value(), {one : 1, two : 'two'});
   });
   it('can use single argument lodash functions', function(){
     var monArr = Monadify([3,1,2]),
     monObj = Monadify({'one' : 1});
-    assert.deepEqual(monArr.sortBy().apply(), [1,2,3]);
-    assert.deepEqual(monObj.assign({two: 'two'}).apply(), {one : 1, two : 'two'});
+    assert.deepEqual(monArr.sortBy().value(), [1,2,3]);
+    assert.deepEqual(monObj.assign({two: 'two'}).value(), {one : 1, two : 'two'});
   });
 });
