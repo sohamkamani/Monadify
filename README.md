@@ -36,7 +36,7 @@ var nMonad = Monadify(n)
 //=> 4
 
 //To return the result
-var result = nMonad.apply();
+var result = nMonad.value();
 console.log(result);
 //=> 4
 ```
@@ -45,7 +45,7 @@ console.log(result);
 - [Constructor](#constructor)
 - [bind](#bind)
 - [send](#send)
-- [apply](#apply)
+- [value](#value)
 - [Lodash/underscore support](#use)
 
 <a name="constructor"/>
@@ -143,9 +143,9 @@ nMonad.send(console.log);
 //=> undefined
 ```
 
-<a name="apply"/>
+<a name="value"/>
 
-### apply()
+### value()
 Returns the current state of input.
 
 #### Examples
@@ -154,7 +154,7 @@ Returns the current state of input.
 var nMonad = Monadify(2);
 nMonad.bind( n => n*3);
 
-var n = nMonad.apply();
+var n = nMonad.value();
 //value of n is 6
 console.log(n);
 //=> 6
@@ -163,7 +163,7 @@ console.log(n);
 <a name="use" />
 
 ### Lodash/underscore support*
-Monadify supports the use of external utility libraries like lodash. It extends their functionality to provide for a great and expressive new way to write code. Lodash functions of the form `_.someFunction(operand, argument)` can be used with Monadify as `someMonad.someFunction(argument).apply()` (see example).
+Monadify supports the use of external utility libraries like lodash. It extends their functionality to provide for a great and expressive new way to write code. Lodash functions of the form `_.someFunction(operand, argument)` can be used with Monadify as `someMonad.someFunction(argument).value()` (see example).
 
 \* This feature is still in development. Contributions are welcome :)
 
@@ -180,7 +180,7 @@ var nMonad = Monadify([1,2,3]);
 nMonad.map(addOne)  //Native lodash function => [2,3,4]
   .max()  //Native lodash function => 4
   .bind(addOne) // Monadify bind function => 5
-  .apply(); // => 5
+  .value(); // => 5
 
 
 function addOne(n){
